@@ -28,26 +28,6 @@ namespace dotnetangular.Controllers
             });
         }
 
-        [HttpGet("generate")]
-        public ContentResult Generate() {
-          
-            var document = SwaggerDocument.FromUrlAsync("https://localhost:5001/swagger/v1/swagger.json");
-
-            var settings = new SwaggerToTypeScriptClientGeneratorSettings
-            {
-              ClassName = "{controller}Client",
-              Template = TypeScriptTemplate.Angular,
-              InjectionTokenType = InjectionTokenType.InjectionToken
-            };
-
-            var generator = new SwaggerToTypeScriptClientGenerator(document.Result, settings);
-            var code = generator.GenerateFile();
-
-            System.IO.File.WriteAllText(@"./ClientApp/src/app/app.service.ts", code);
-
-            return Content(code, "text/plain");
-        }
-
         public class WeatherForecast
         {
             public string DateFormatted { get; set; }

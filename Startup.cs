@@ -72,6 +72,8 @@ namespace dotnetangular
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            app.UseGeneratedClient("https://localhost:5001/swagger/v1/swagger.json");
         }
     }
 }
